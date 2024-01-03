@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback } from 'react';
 import type { ListRenderItem, SectionListRenderItem, View } from 'react-native';
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, Image } from 'react-native';
 
 import { getReducedSectionData } from '../../helpers';
 import type { OptionType, SectionOptionType } from '../../types';
@@ -136,7 +136,7 @@ export const OptionsList = forwardRef<View>((props: Props, optionsListRef) => {
                     onPress={props?.onAddOption}
                 >
                     <Text style={optionCustomStyles?.text}>{props?.onAddOptionLabel}</Text>
-                    <Text style={optionCustomStyles?.text}>+</Text>
+                    <Image source={require('../../assets/icons/plus.png')} />
                 </Pressable>
             )}
             {isSectionedOptions ? (
