@@ -1,6 +1,6 @@
 {
     "name": "@tactacam-llc/react-native-select-pro",
-    "version": "2.3.0-beta02",
+    "version": "2.3.0-beta03",
     "description": "React Native dropdown (select) component developed by Mobile Reality",
     "main": "lib/commonjs/index",
     "module": "lib/module/index",
