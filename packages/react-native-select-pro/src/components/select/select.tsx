@@ -58,7 +58,9 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
         onSelectOpened,
         onSelectClosed,
         onRemove,
+        onAddOption,
         // Customized
+        onAddOptionLabel,
         arrowContainerProps,
         arrowImageProps,
         backdropChildProps,
@@ -109,6 +111,7 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
         onOutsidePress,
         onPressSelectControl,
         onPressSection,
+        close,
     } = useSelect<T>({
         selectControlRef,
         optionsListRef,
@@ -212,7 +215,17 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
                                 disabled,
                             }}
                         >
-                            <OptionsList ref={optionsListRef} />
+                            <OptionsList
+                                ref={optionsListRef}
+                                // @ts-ignore
+                                onAddOptionLabel={onAddOptionLabel}
+                                onAddOption={() => {
+                                    if (onAddOption) {
+                                        onAddOption();
+                                    }
+                                    close();
+                                }}
+                            />
                         </OptionsListContextProvider>
                     </Portal>
                 </>

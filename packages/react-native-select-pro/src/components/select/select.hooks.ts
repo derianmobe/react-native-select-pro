@@ -324,5 +324,6 @@ export const useSelect = <T>({
         onPressSection,
         onOutsidePress,
         onPressSelectControl,
+        close,
     };
 };

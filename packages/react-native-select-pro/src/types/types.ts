@@ -41,6 +41,9 @@ export type OptionsType<T> = SectionOptionType<T>[] | OptionType<T>[];
  * `<Select />` component props
  */
 export interface SelectProps<T = unknown> {
+    onAddOption?: () => void;
+    onAddOptionLabel?: string;
+
     /**
      *  An array of objects that represents the available options for a `Select`.
      */

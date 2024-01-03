@@ -1,5 +1,6 @@
 import React, { forwardRef, useCallback } from 'react';
 import type { ListRenderItem, SectionListRenderItem, View } from 'react-native';
+import { Pressable, Text } from 'react-native';
 
 import { getReducedSectionData } from '../../helpers';
 import type { OptionType, SectionOptionType } from '../../types';
@@ -11,7 +12,12 @@ import { SectionOptionsList } from '../section-options-list';
 
 import { useOptionsList } from './options-list.hooks';
 
-export const OptionsList = forwardRef<View>((_, optionsListRef) => {
+type Props = {
+    onAddOptionLabel?: string;
+    onAddOption?: () => void;
+};
+
+export const OptionsList = forwardRef<View>((props: Props, optionsListRef) => {
     const {
         getItemLayout,
         measuredRef,
@@ -115,6 +121,24 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
 
     return (
         <OptionsListWrapper ref={optionsListRef}>
+            {props?.onAddOptionLabel && (
+                <Pressable
+                    style={({ pressed }) => [
+                        {
+                            flex: 1,
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            padding: 10,
+                        },
+                        pressed && optionCustomStyles?.pressed,
+                        optionCustomStyles?.container,
+                    ]}
+                    onPress={props?.onAddOption}
+                >
+                    <Text style={optionCustomStyles?.text}>{props?.onAddOptionLabel}</Text>
+                    <Text style={optionCustomStyles?.text}>+</Text>
+                </Pressable>
+            )}
             {isSectionedOptions ? (
                 <SectionOptionsList
                     resolvedData={resolvedData}
