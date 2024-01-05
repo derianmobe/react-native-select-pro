@@ -124,8 +124,8 @@ export const OptionsList = forwardRef<View>((props: Props, optionsListRef) => {
             {props?.onAddOptionLabel && (
                 <Box
                     style={{
-                        paddingBottom: 3,
-                        paddingHorizontal: 2,
+                        paddingBottom: 2,
+                        paddingHorizontal: 3,
                         borderBottomLeftRadius: 10,
                         borderBottomRightRadius: 10,
                         backgroundColor: '#FCFCFC',
