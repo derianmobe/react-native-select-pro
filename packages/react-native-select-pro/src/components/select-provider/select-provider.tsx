@@ -30,7 +30,7 @@ export const SelectModalContext = createContext(0);
 
 export const SelectModalProvider = ({ children }: Props) => {
     return (
-        <SelectModalContext.Provider value={APPROX_STATUSBAR_HEIGHT}>
+        <SelectModalContext.Provider value={APPROX_STATUSBAR_HEIGHT || 0}>
             <PortalHosts />
             {children}
         </SelectModalContext.Provider>

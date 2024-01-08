@@ -77,8 +77,8 @@ export const useSelect = <T>({
         const { height: optionsListHeight } = await measureOptionsListInWindow();
         const isOverflow = y + height + optionsListHeight > screenHeight;
         const top = isOverflow
-            ? y - optionsListHeight + APPROX_STATUSBAR_HEIGHT
-            : y + height - valueY + APPROX_STATUSBAR_HEIGHT;
+            ? y - optionsListHeight + (APPROX_STATUSBAR_HEIGHT || 0)
+            : y + height - valueY + (APPROX_STATUSBAR_HEIGHT || 0);
         const left = I18nManager.getConstants().isRTL ? screenWidth - width - x : x;
 
         dispatch({
