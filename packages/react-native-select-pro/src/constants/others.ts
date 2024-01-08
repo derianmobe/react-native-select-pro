@@ -1,5 +1,4 @@
-// based on: https://github.com/callstack/react-native-paper/blob/main/src/constants.tsx
-// const statusBarHeight =
-//     NativeModules.NativeUnimoduleProxy?.modulesConstants?.ExponentConstants?.statusBarHeight ?? 0;
+import { Platform, StatusBar } from 'react-native';
 
-export const APPROX_STATUSBAR_HEIGHT: number = 0;
+export const APPROX_STATUSBAR_HEIGHT: number | undefined =
+    Platform.OS === 'ios' ? 0 : StatusBar.currentHeight;
