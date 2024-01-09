@@ -2,7 +2,7 @@ import type { ForwardedRef } from 'react';
 import React, { forwardRef, memo } from 'react';
 import isEqual from 'react-fast-compare';
 import type { TextStyle, View, ViewStyle } from 'react-native';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text, View as Box } from 'react-native';
 
 import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING, PRESSED_STYLE } from '../../constants';
 import type { OnChooseOption } from '../../types';
@@ -31,34 +31,56 @@ const OptionComponent = forwardRef(
         const { label } = option;
 
         return (
-            <Pressable
-                accessibilityLabel={`Select ${label}`}
-                {...optionButtonProps}
-                ref={ref}
-                accessibilityRole="menuitem"
-                accessibilityState={{ disabled: isDisabled }}
-                disabled={isDisabled}
-                style={({ pressed }) => [
-                    styles.option,
-                    optionCustomStyles?.container,
-                    isSelected && [styles.selected, optionCustomStyles?.selected?.container],
-                    pressed && (optionCustomStyles?.pressed ?? PRESSED_STYLE),
-                    overrideWithDisabledStyle && styles.disabled,
-                ]}
-                onPress={onChooseOption}
+            <Box
+                style={
+                    isSelected
+                        ? {
+                              paddingBottom: 2,
+                              paddingHorizontal: 1,
+                              borderBottomLeftRadius: 5,
+                              borderBottomRightRadius: 5,
+                              backgroundColor: '#FCFCFC',
+                              shadowColor: '#000',
+                              shadowOffset: {
+                                  width: 0,
+                                  height: 3,
+                              },
+                              shadowOpacity: 0.27,
+                              shadowRadius: 4.65,
+                              elevation: 6,
+                          }
+                        : {}
+                }
             >
-                <Text
-                    numberOfLines={1}
-                    {...optionTextProps}
-                    style={[
-                        styles.text,
-                        optionCustomStyles?.text,
-                        isSelected && optionCustomStyles?.selected?.text,
+                <Pressable
+                    accessibilityLabel={`Select ${label}`}
+                    {...optionButtonProps}
+                    ref={ref}
+                    accessibilityRole="menuitem"
+                    accessibilityState={{ disabled: isDisabled }}
+                    disabled={isDisabled}
+                    style={({ pressed }) => [
+                        styles.option,
+                        optionCustomStyles?.container,
+                        isSelected && [styles.selected, optionCustomStyles?.selected?.container],
+                        pressed && (optionCustomStyles?.pressed ?? PRESSED_STYLE),
+                        overrideWithDisabledStyle && styles.disabled,
                     ]}
+                    onPress={onChooseOption}
                 >
-                    {label}
-                </Text>
-            </Pressable>
+                    <Text
+                        numberOfLines={1}
+                        {...optionTextProps}
+                        style={[
+                            styles.text,
+                            optionCustomStyles?.text,
+                            isSelected && optionCustomStyles?.selected?.text,
+                        ]}
+                    >
+                        {label}
+                    </Text>
+                </Pressable>
+            </Box>
         );
     },
 );

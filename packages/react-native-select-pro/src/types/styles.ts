@@ -98,6 +98,8 @@ export type SelectControlStyles = {
 };
 
 export type OptionStyles = {
+    addOptionButton?: StyleProp<ViewStyle>;
+    addOptionText?: StyleProp<TextStyle>;
     /**
      * Style for the single option.
      */

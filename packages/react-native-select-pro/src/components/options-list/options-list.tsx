@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback } from 'react';
 import type { ListRenderItem, SectionListRenderItem, View } from 'react-native';
-import { Pressable, Text, Image, View as Box } from 'react-native';
+import { Pressable, Text, Image } from 'react-native';
 
 import { getReducedSectionData } from '../../helpers';
 import type { OptionType, SectionOptionType } from '../../types';
@@ -122,47 +122,10 @@ export const OptionsList = forwardRef<View>((props: Props, optionsListRef) => {
     return (
         <OptionsListWrapper ref={optionsListRef}>
             {props?.onAddOptionLabel && (
-                <Box
-                    style={{
-                        paddingBottom: 2,
-                        paddingHorizontal: 3,
-                        borderBottomLeftRadius: 10,
-                        borderBottomRightRadius: 10,
-                        backgroundColor: '#FCFCFC',
-                        shadowColor: '#000',
-                        shadowOffset: {
-                            width: 0,
-                            height: 3,
-                        },
-                        shadowOpacity: 0.27,
-                        shadowRadius: 4.65,
-
-                        elevation: 6,
-                    }}
-                >
-                    <Pressable
-                        style={[
-                            {
-                                flex: 1,
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                paddingVertical: 12,
-                                paddingHorizontal: 8,
-                                marginBottom: 2,
-                                borderBottomLeftRadius: 10,
-                                borderBottomRightRadius: 10,
-                                borderTopRightRadius: 0,
-                                borderTopLeftRadius: 0,
-                            },
-                            optionCustomStyles?.pressed,
-                            optionCustomStyles?.container,
-                        ]}
-                        onPress={props?.onAddOption}
-                    >
-                        <Text style={optionCustomStyles?.text}>{props?.onAddOptionLabel}</Text>
-                        <Image source={require('../../assets/icons/plus.png')} />
-                    </Pressable>
-                </Box>
+                <Pressable style={optionCustomStyles?.addOptionButton} onPress={props?.onAddOption}>
+                    <Text style={optionCustomStyles?.addOptionText}>{props?.onAddOptionLabel}</Text>
+                    <Image source={require('../../assets/icons/plus.png')} />
+                </Pressable>
             )}
             {isSectionedOptions ? (
                 <SectionOptionsList
